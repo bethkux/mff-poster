@@ -19,7 +19,7 @@
 %   in less than 1 minute by just looking at the poster.
 
 % modify the fontscale parameter to make everything slighly bigger or smaller.
-\documentclass[portrait,a0paper,fontscale=0.33]{baposter}
+\documentclass[portrait,a0paper,fontscale=0.34]{baposter}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -108,29 +108,34 @@
 %
 
 \begin{posterbox}[column=0, span=1, name=background]{Introduction}
-A typical point-and-click adventure game is a genre that emphasizes puzzle solving and often involves mystery and exploration. Players interact with in-game environments through a mouse cursor that is used to click on objects, locations, or characters in a scene to trigger actions or dialogues. Despite its seemingly straightforward gameplay, creating a point-and-click adventure game involves implementing a variety of systems, including movement, dialogue and more. For inexperienced developers, designing these can be difficult. Furthermore, there is a lack of accessible, beginner-friendly tools dedicated specifically to this genre in Unity Asset Store. To fill this demand, the goal of this thesis is to design and implement an accessible framework tailored to the development of 2D point-and-click adventure games in Unity. This framework, called \textit{TaleCraft}, will prioritize functionality and user-friendliness to help developers create games without need for advanced programming skills.
+A typical point-and-click adventure game is a genre that emphasizes puzzle solving and often involves mystery and exploration. Players interact with in-game environments through a mouse cursor that is used to click on objects, locations, or characters in a scene to trigger actions or dialogues. Despite its seemingly straightforward gameplay, creating a point-and-click adventure game involves implementing a variety of systems, including movement, dialogue and more. 
+
+For inexperienced developers, designing these systems can be difficult. Furthermore, there is a lack of accessible, beginner-friendly tools dedicated specifically to this genre in Unity Asset Store. To fill this demand, the goal of this thesis is to design and implement an accessible framework tailored to the development of 2D point-and-click adventure games in Unity. This framework, called \textit{TaleCraft}, will prioritize functionality and user-friendliness to help developers create games without need for advanced programming skills.
 \end{posterbox}
 
 \begin{posterbox}[column=0, span=1, name=goals, below=background, headerColorOne=cyan!40, boxColorOne=cyan!10]{Goals}
-For this thesis we aim to meet these two following goals:
+For this thesis we aim to meet these two goals:
 \begin{itemize}
-\item \textbf{Framework}. We implement a framework in Unity with the following systems:
+\item \textbf{Framework}. Implement a framework in Unity with the following systems:
 \begin{itemize}
-    \item Inventory
-    \item Commands
-    \item Movement
-    \item Dialogue
+    \item \textbf{Inventory} - Allows to store, examine, and later use items
+    \item \textbf{Commands} - Context-based or command-based interactions
+    \item \textbf{Movement} - Exploration of the environment by walking around
+    \item \textbf{Dialogue} - Conversations between characters
 \end{itemize}
-\item \textbf{Demo games.} To showcase the utility of our framework, we create two demo games.
+\item \textbf{Demo games.} To showcase the usability of our framework, create two demo games.
 \end{itemize}
 
 \end{posterbox}
 
 \begin{posterbox}[column=0, span=1, name=architecture, below=goals]{Architecture}
 
+\begin{wrapfigure}{R}{0.4\textwidth}
+\centering
+\includegraphics[width=0.35\textwidth]{img/framework.png}
+\end{wrapfigure}
 The framework is divided into five systems, each containing distinct features of TaleCraft. The Command System forms the core of the framework, while the Inventory and Dialogue Systems are optional components that can be configured according to the user's needs.
 \begin{center}
-\includegraphics[width=0.3\linewidth]{img/framework.png}
 \end{center}
 \end{posterbox}
 
@@ -171,8 +176,7 @@ To let the player collect and use items, the framework includes an inventory sys
 TaleCraft uses graphs for representing graphs. They are ideal when dealing with complex branching conversations. They also make it straightforward to implement cyclic paths, allowing characters to revisit or repeat parts of a conversation. In TaleCraft, the dialogue system is built using Unity’s \textit{GraphView} framework. Several types of nodes are used to construct these graphs: 
 
 \begin{center}
-\includegraphics[width=0.65\linewidth]{img/nodes1.png}
-\includegraphics[width=0.7\linewidth]{img/nodes2.png}
+\includegraphics[width=0.7\linewidth]{img/nodes.png}
 \end{center}
 
 %{\footnotesize
@@ -187,7 +191,8 @@ TaleCraft uses graphs for representing graphs. They are ideal when dealing with 
 \end{posterbox}
 
 
-\begin{posterbox}[column=1, name=result2, below=ds]{Result: Demo}
+\begin{posterbox}[column=1, name=result2, below=ds]{Demo}
+Two demo games have been developed to recreate scenes from iconic point-and-click adventure titles and to demonstrate the usability of the framework. The first demo is set in the opening location of \textit{Beneath a Steel Sky}. In this scene, the player can explore two rooms, examine various items, and engage in conversations with two characters. The second demo is based on \textit{The Secret of Monkey Island} and takes place on a street in the town of Melee Island. It showcases a scrolling screen and includes two groups of characters that the player can interact with and talk to in order to obtain items. 
 \begin{center}
 \includegraphics[width=0.506\linewidth]{img/manual.png}
 \includegraphics[width=0.486\linewidth]{img/manual-tsomi.png}
