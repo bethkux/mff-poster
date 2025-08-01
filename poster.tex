@@ -19,7 +19,7 @@
 %   in less than 1 minute by just looking at the poster.
 
 % modify the fontscale parameter to make everything slighly bigger or smaller.
-\documentclass[portrait,a0paper,fontscale=0.25]{baposter}
+\documentclass[portrait,a0paper,fontscale=0.33]{baposter}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -29,14 +29,19 @@
 % TeX font catalogue without much risk. Sans-serif fonts are suggested for the
 % posters; see https://tug.org/FontCatalogue/sansseriffonts.html
 \usepackage[sfdefault]{Fira Sans}
+\usepackage{hyperref} 
 %\usepackage[default]{droidsans}
 %\usepackage[math]{iwona}
 %\usepackage[defaultfam]{montserrat}
 %\usepackage{cmbright}
 %\usepackage{yfonts}\renewcommand{\familydefault}{\frakdefault}
-
+\usepackage{wrapfig}
 \usepackage{color}
 \usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{tasks}
+\usepackage{wrapfig}
+\usepackage{comment}
 \usepackage{amssymb,amsmath}
 \usepackage[export]{adjustbox} %allows using valign with \includegraphics
 
@@ -92,67 +97,61 @@
 	headerColorOne=black!15, % box header background color
 	headerFontColor=black,
 	}%
-	{\includegraphics[height=7em]{logos/mff-black.pdf}}
-	{Thesis name goes here}
-	{\vspace{1ex} Yourname Goeshere}
-	{\includegraphics[height=7em]{logos/uk-red.pdf}}
+	{\includegraphics[height=6em]{logos/mff-black.pdf}}
+	{TaleCraft — Framework for 2D\\ Point-and-Click Adventure Games}
+	{\vspace{1ex} Alžbeta Kulichová | Supervisor: Mgr. Pavel Ježek, Ph.D.}
+	{\includegraphics[height=6em]{logos/uk-red.pdf}}
 
 
 %
 % LEFT COLUMN
 %
 
-\begin{posterbox}[column=0,name=background]{Background}
-Describe what is the problem that your thesis addresses.
-
-Include a picture of the problem. Name the problem.
-
-\begin{center}\begin{tikzpicture}[ultra thick, inner sep=1ex]
-\node[rectangle, rounded corners=1ex, draw=red!80!black, color=red!80!black, font=\huge\bfseries, rotate=21] {Problem!};
-\end{tikzpicture}\end{center}
+\begin{posterbox}[column=0, span=1, name=background]{Introduction}
+A typical point-and-click adventure game is a genre that emphasizes puzzle solving and often involves mystery and exploration. Players interact with in-game environments through a mouse cursor that is used to click on objects, locations, or characters in a scene to trigger actions or dialogues. Despite its seemingly straightforward gameplay, creating a point-and-click adventure game involves implementing a variety of systems, including movement, dialogue and more. For inexperienced developers, designing these can be difficult. Furthermore, there is a lack of accessible, beginner-friendly tools dedicated specifically to this genre in Unity Asset Store. To fill this demand, the goal of this thesis is to design and implement an accessible framework tailored to the development of 2D point-and-click adventure games in Unity. This framework, called \textit{TaleCraft}, will prioritize functionality and user-friendliness to help developers create games without need for advanced programming skills.
 \end{posterbox}
 
-\begin{posterbox}[column=0, name=goals, below=background, headerColorOne=cyan!60, boxColorOne=cyan!20]{Thesis goals}
+\begin{posterbox}[column=0, span=1, name=goals, below=background, headerColorOne=cyan!40, boxColorOne=cyan!10]{Goals}
+For this thesis we aim to meet these two following goals:
 \begin{itemize}
-\item How do you approach and address the problem?
-\item What tools do you use to address it?
-\item \dots
+\item \textbf{Framework}. We implement a framework in Unity with the following systems:
+\begin{itemize}
+    \item Inventory
+    \item Commands
+    \item Movement
+    \item Dialogue
+\end{itemize}
+\item \textbf{Demo games.} To showcase the utility of our framework, we create two demo games.
 \end{itemize}
 
-Highlighting important boxes helps a lot, but do not overdo the highlighting --- if all boxes are highlighted, not a single one will actually stand out.
 \end{posterbox}
 
-\begin{posterbox}[column=0, name=something1, below=goals]{Some extra boxes}
-This box may contain an overview of the used methods, mathematics, program structure, etc.
+\begin{posterbox}[column=0, span=1, name=architecture, below=goals]{Architecture}
 
-Include a picture, because pictures are better. Thesis defense takes less than 10 minutes, no one can read a wall of text in that short time. (For comparison, the usual realistic poster visit on a conference takes 15 seconds, unless the poster manages to catch the attention in that short time.)
+The framework is divided into five systems, each containing distinct features of TaleCraft. The Command System forms the core of the framework, while the Inventory and Dialogue Systems are optional components that can be configured according to the user's needs.
+\begin{center}
+\includegraphics[width=0.3\linewidth]{img/framework.png}
+\end{center}
+\end{posterbox}
 
-\tikzstyle{rec}=[rectangle, draw, rounded corners=1ex, font=\huge\bfseries]
-\begin{center}\begin{tikzpicture}[ultra thick, inner sep=1ex]
-\node[rec] (a) {Keep};
-\node[rec, circle, right=of a] (b) {it};
-\node[rec, right=of b] (c) {simple};
-\node[rec, densely dotted, below=6cm of c, font=\small] (notice) {\dots{}but precise!};
-\draw[->] (a) to (b);
-\draw[->] (b) to (c);
-\draw[dotted] (notice) to (c);
-\end{tikzpicture}\end{center}
+\begin{posterbox}[column=0, span=1, name=cs, below=architecture]{Command System}
+
+\begin{wrapfigure}{R}{0.34\textwidth}
+\centering
+\includegraphics[width=0.3\textwidth]{img/image_2025-07-08_214350710.png}
+\end{wrapfigure}
+
+Typical point-and-click games use either a command-based or a context-based system to let the player interact with the world. To enable the use of both of these methods, we implemented a system that lets the user of the framework add new commands. If needed, these commands can be displayed on the screen and made selectable by the player. The user can define the logic behind various actions by setting up conditions. When these conditions are met, the corresponding actions are executed.  The system also offers additional features, such as the ability to show a sentence describing the actions that the player is about to take.
+
 
 \end{posterbox}
 
-\begin{posterbox}[column=0, name=something2, below=something1, headerColorOne=yellow!80!orange!95!black, boxColorOne=yellow!33]{Golden rule of posters}
-For each $p \in P$ where $P$ is a set of posters:
-$$ \textsc{Success}(p) = \frac{\textsc{Clarity}(p)}{\textsc{TimeToViewerAttention}(p)} $$
-\end{posterbox}
+\begin{posterbox}[column=0, span=1, name=ws, below=cs]{Walking System}
+Normally, the player has the ability to move around the walking area. TaleCraft supports this functionality by representing walkable areas using polygons. At least one polygon is required to define the main walkable region, while additional optional polygons can be used to define obstacles that characters must navigate around. The image below shows a scene which uses polygons to determine where the characters will walk. Pathfinding is handled by an implementation of the A* algorithm. The system also supports character scaling based on their position, which creates the illusion of depth and makes the 2D environment appear more three-dimensional. 
 
-%
-% FOOTER
-%
-
-\begin{posterbox}[column=0, span=2, name=footer, below=something2,
-	textborder=none, headerborder=none, boxheaderheight=0pt,
-	boxColorOne=black!3]{}
-If some institute/grant/department sponsored the work, put an acknowledgement here.
+\begin{center}
+\includegraphics[width=0.75\linewidth]{img/walkable_map3.png}
+\end{center}
 \end{posterbox}
 
 %
@@ -163,50 +162,86 @@ If some institute/grant/department sponsored the work, put an acknowledgement he
 % with measurements are perfect, tables are also good.
 %
 
-\begin{posterbox}[column=1, name=result1]{Result: SomePlots are Good}
+\begin{posterbox}[column=1, span=1, name=is]{Inventory}
+To let the player collect and use items, the framework includes an inventory system. A key feature is the ability to reference inventory items across different scenes. In TaleCraft, these items are \verb|ScriptableObject|s, which makes it easy to create new items in the project and ensures they can be accessed globally. These objects store essential data such as the item's name and description, which can be used for features like displaying tags when the player hovers over an item with the mouse cursor.
+\end{posterbox}
+
+\begin{posterbox}[column=1, span=1, name=ds, below=is, %bottomaligned=info
+]{Dialogue}
+TaleCraft uses graphs for representing graphs. They are ideal when dealing with complex branching conversations. They also make it straightforward to implement cyclic paths, allowing characters to revisit or repeat parts of a conversation. In TaleCraft, the dialogue system is built using Unity’s \textit{GraphView} framework. Several types of nodes are used to construct these graphs: 
+
 \begin{center}
-\includegraphics[width=0.7\linewidth]{img/ukazka-obr02.pdf}
+\includegraphics[width=0.65\linewidth]{img/nodes1.png}
+\includegraphics[width=0.7\linewidth]{img/nodes2.png}
 \end{center}
 
-You may want to choose a single picture and make it stand out of the poster, so that it communicates the main result of your thesis as clearly as possible.
+%{\footnotesize
+%\begin{tasks}[label=\textbullet](3)
+%       \task Start
+%        \task End
+%        \task Dialogue
+%        \task Choice
+%        \task Event
+%        \task Branch
+%\end{tasks}}
 \end{posterbox}
 
-\begin{posterbox}[column=1, name=result2, below=result1]{Result: TableData are OK too}
+
+\begin{posterbox}[column=1, name=result2, below=ds]{Result: Demo}
 \begin{center}
-\begin{tabular}{lrr}
- & \textbf{SomeProgram} & \textbf{ThisThesis} \\
-\hline
-Process A & 50\% & 58\% \\
-Time for A & 35 days & \textcolor{green!80!black}{35 seconds} \\
-Process B & \textcolor{red}{15\%} & 55\% \\
-Time for B & 1 day & 8 hours \\
-Price & 66.6 EUR & free
-\end{tabular}
+\includegraphics[width=0.506\linewidth]{img/manual.png}
+\includegraphics[width=0.486\linewidth]{img/manual-tsomi.png}
 \end{center}
 \end{posterbox}
 
-\begin{posterbox}[column=1, name=result3, below=result2, headerColorOne=green!50!yellow, boxColorOne=green!10]{Main result}
-\large\bfseries
-\vspace{1ex}
-\begin{center}
-Program ThesisProgram solves the problem better than OtherProgram if X, and faster if Y.
-\end{center}
-\vspace{.5ex}
+
+\begin{posterbox}[column=1, name=conclusion, below=result2, headerColorOne=yellow!80!orange!95!black, boxColorOne=yellow!33]{Conclusion}
+
+%\begin{wrapfigure}{r}{0.4\textwidth}
+%\includegraphics[width=1\linewidth]{img/qr.png} 
+%\end{wrapfigure}
+
+The resulting framework delivers on its objectives and serves as a foundation for developing 2D point-and-click adventure games. In addition, two simple demo games that demonstrate the capabilities of our framework have been developed. Suggestions for future work include the implementation of features that should eventually be part of the framework, the most important being animation, sound, and saving system. 
+
 \end{posterbox}
 
-\begin{posterbox}[column=1, name=conclusion, below=result3, bottomaligned=something2]{Conclusions}
-\begin{itemize}
-\item explain the value of your result to others
-\item point out any applications
-\item if the program is online/opensource/on github, you may highlight it here
-\end{itemize}
-Possible future work:
-\begin{itemize}
-\item say what could be improved
-\item point out any interesting new opened problems that would be worth investigating
-\item include long-term goals
-\end{itemize}
+
+\begin{posterbox}[column=1, name=info, below=conclusion]{Info}
+
+\begin{comment}
+\begin{wrapfigure}{R}{0.35\textwidth}
+\centering
+\includegraphics[width=0.16\textwidth]{img/qr.png}
+\end{wrapfigure}
+\end{comment}
+%\begin{tabular}{@{}p{0.65\linewidth} p{0.3\linewidth}@{}}
+% Left column: everything in a parbox
+ 
+
+
+\vspace{5mm}
+    \textbf{Contact:} \\
+    \href{mailto:kulichova.alzbeta@gmail.com}{kulichova.alzbeta@gmail.com} \\[1ex]
+    \textbf{Project GitHub Page:} \\
+    \href{https://github.com/bethkux/TaleCraft}{https://github.com/bethkux/TaleCraft}\\
+    
+
+%&
+% Right column: QR image, top aligned
+
+%\end{tabular}
+
+%\begin{comment}
+\begin{flushright}
+\raisebox{10pt}[0pt][0pt]{%
+\includegraphics[width=0.22\linewidth]{img/qr.png}%
+}
+\end{flushright}
+%\end{comment}
 \end{posterbox}
+
+
+
 
 \end{poster}
 \end{document}
