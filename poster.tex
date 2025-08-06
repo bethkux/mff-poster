@@ -42,6 +42,7 @@
 \usepackage{tasks}
 \usepackage{wrapfig}
 \usepackage{comment}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{amssymb,amsmath}
 \usepackage[export]{adjustbox} %allows using valign with \includegraphics
 
@@ -108,17 +109,17 @@
 %
 
 \begin{posterbox}[column=0, span=1, name=background]{Introduction}
-A typical point-and-click adventure game is a genre that emphasizes puzzle solving and often involves mystery and exploration. Players interact with in-game environments through a mouse cursor that is used to click on objects, locations, or characters in a scene to trigger actions or dialogues. Despite its seemingly straightforward gameplay, creating a point-and-click adventure game involves implementing a variety of systems, including movement, dialogue and more. 
+A typical \textbf{point-and-click adventure game} is a genre that emphasizes puzzle solving and often involves mystery and exploration. Players interact with in-game environments through a \textbf{mouse cursor} that is used to click on objects, locations, or characters in a scene to trigger actions or dialogues. Despite its seemingly straightforward gameplay, creating a point-and-click adventure game involves implementing a variety of systems, including movement, dialogue and more. 
 
-For inexperienced developers, designing these systems can be difficult. Furthermore, there is a lack of accessible, beginner-friendly tools dedicated specifically to this genre in Unity Asset Store. To fill this demand, the goal of this thesis is to design and implement an accessible framework tailored to the development of 2D point-and-click adventure games in Unity. This framework, called \textit{TaleCraft}, will prioritize functionality and user-friendliness to help developers create games without need for advanced programming skills. This will be achieved by creating an editor in the Unity Engine that allows developers to create their desired game instead of making them write code themselves.
+For inexperienced developers, designing these systems can be difficult. Furthermore, there is a lack of accessible, beginner-friendly tools dedicated specifically to this genre in Unity Asset Store. To fill this demand, the goal of this thesis is to design and implement \textbf{an accessible framework} tailored to the development of 2D point-and-click adventure games in Unity. This framework, called \textit{\textbf{TaleCraft}}, will prioritize functionality and user-friendliness to help developers create games without need for advanced programming skills. This will be achieved by creating \textbf{a set of extensions to the Unity Editor} that would allow developers to create their desired game instead of forcing them write code themselves.
 \end{posterbox}
 
 \begin{posterbox}[column=0, span=1, name=goals, below=background, headerColorOne=cyan!40, boxColorOne=cyan!10]{Goals}
 For this thesis we aim to meet these two goals:
 \begin{itemize}
 \setlength\itemsep{0.05em}
-\item \textbf{Framework}. Implement a framework in Unity.
-\item \textbf{Demo games.} Create two demo games to showcase the usability of our framework.
+\item \textbf{Framework} -- Implement the 2D point-and-click game framework in Unity
+\item \textbf{Demo games} -- Create two demos that showcase the usability of our framework
 \end{itemize}
 
 \end{posterbox}
@@ -136,10 +137,10 @@ The first goal of our thesis was to design the framework. To do this, we analyze
 namely \textit{Beneath a Steel Sky}, \textit{The Secret of Monkey Island} and \textit{Fran Bow}. We then identified their common features, and divided them into the following systems:
 \begin{itemize}
 \setlength\itemsep{0.05em}
-    \item \textbf{Commands} - Logic behind player's interactions
-    \item \textbf{Movement} - Exploration of the environment by walking around
-    \item \textbf{Inventory} - Storing, examining, and later using items
-    \item \textbf{Dialogue} - Conversations between characters
+    \item \textbf{Commands} -- Logic behind player's interactions
+    \item \textbf{Movement} -- Exploration of the environment by walking around
+    \item \textbf{Inventory} -- Storing, examining, and later using items
+    \item \textbf{Dialogue} -- Conversations between characters
 \end{itemize}
 
 \begin{comment}
@@ -155,15 +156,15 @@ namely \textit{Beneath a Steel Sky}, \textit{The Secret of Monkey Island} and \t
 \includegraphics[width=0.48\textwidth]{img/image_2025-07-04_190803886.png}
 \end{wrapfigure}
 
-In our framework, commands represent the actions that the player wants to perform. These can be thought of as verbs, similar to those used in classic adventure games, such as \texttt{Talk to} or \texttt{Give}. We implemented a system that allows the user to define any number of commands. For example, the image on the right shows a variety of different commands that can be created. The game designer can define the logic behind each command by setting up conditions. When these conditions are met, the corresponding actions are triggered. Commands are not limited to background logic. If needed, they can also be displayed on the screen and made selectable by the player. The system additionally supports features like displaying a sentence that reflects the action the player is about to take.
+In our framework, commands represent the \textbf{actions} that the player wants to perform. These can be thought of as verbs, similar to those used in classic adventure games, such as \texttt{Talk to} or \texttt{Give}. We implemented a system that allows the game developer to define any number of commands. For example, the image on the right shows a variety of different commands that can be created. The developer can define the logic behind each command by setting up \textbf{conditions}. When these conditions are met, the corresponding actions are triggered. Commands are not limited to background logic. If needed, they can also be \textbf{displayed on the screen} and \textbf{made selectable} by the player. The system additionally supports features like \textbf{displaying a sentence} that reflects the action the player is about to take.
 
 \end{posterbox}
 
 \begin{posterbox}[column=0, span=1, name=ws, below=cs]{Walking System}
-In typical point-and-click games, the player is able to move around the walkable area, and TaleCraft fully supports this functionality. Walkable regions are defined using polygons. At least one polygon is required to represent the area where characters can move, while additional optional polygons can be added to represent obstacles that characters must avoid. The image below illustrates such a setup: the blue polygon defines the main walkable area, while the grey and yellow ones represent obstacles. The pink line shows a calculated path from the character's starting position to a target point. Additionally, the system supports automatic character scaling in the editor based on their position, which helps create the illusion of depth. 
+In typical point-and-click games, the player is able to \textbf{move around} the walkable area, and \textit{TaleCraft} fully supports this functionality. Walkable regions are defined using \textbf{polygons}. At least one polygon is required to represent the area where characters can move, while additional optional polygons can be added to represent \textbf{obstacles} that characters must avoid. The image below illustrates such a setup: the \textcolor{cyan}{\textbf{blue}} polygon defines the main walkable area, while the \textcolor{gray}{\textbf{grey}} and \textcolor{Dandelion}{\textbf{yellow}} ones represent obstacles. The \textcolor{green}{\textbf{green}} line shows a calculated path from the character's starting position to a target point. Additionally, the system supports automatic character \textbf{scaling} in the editor based on their position, which helps create the illusion of depth. 
 
 \begin{center}
-\includegraphics[width=1\linewidth]{img/walkable_map4.png}
+\includegraphics[width=1\linewidth]{img/walkable_map5.png}
 \end{center}
 \end{posterbox}
 
@@ -176,23 +177,23 @@ In typical point-and-click games, the player is able to move around the walkable
 %
 
 \begin{posterbox}[column=1, span=1, name=is]{Inventory}
-To let the player collect and use items, the framework includes an inventory system. A key feature is the ability to reference inventory items across different scenes. In TaleCraft, these items are \verb|ScriptableObject|s, which makes it easy to create new items in the project and ensures they can be accessed globally. These objects store essential data such as the item's name and description, which can be used for features like displaying tags when the player hovers over an item with the mouse cursor.
+To let the player \textbf{collect} and \textbf{use} items, the framework includes an inventory system. A key feature is the ability to \textbf{reference} inventory items across different scenes. In \textit{TaleCraft}, these items are \verb|ScriptableObject|s, which makes it easy to create new items in the project and ensures they can be accessed globally. These objects store essential data such as the item's name and description, which can be used for features like \textbf{displaying tags }when the player hovers over an item with the mouse cursor.
 \end{posterbox}
 
 \begin{posterbox}[column=1, span=1, name=ds, below=is, %bottomaligned=info
 ]{Dialogue}
-TaleCraft uses graphs for representing graphs, as they are ideal when dealing with complex branching conversations. They also make it straightforward to implement cyclic paths, allowing characters to revisit or repeat parts of a conversation. For TaleCraft, we defined several types of nodes that are used to construct graphs of the dialogue system.
+\textit{TaleCraft} uses \textbf{graphs} for representing dialogues, as they are ideal when dealing with complex branching \textbf{conversations}. They also make it straightforward to implement cyclic paths, allowing characters to revisit or repeat parts of a conversation. For \textit{TaleCraft}, we defined several types of \textbf{nodes} that are used to construct graphs of the dialogue system.
 
 \begin{multicols}{2}
 \begin{enumerate}
 \setlength
 \itemsep{0.0em}
-    \item \textbf{Start} - graph's starting node
-    \item \textbf{Event} - executes events
-    \item \textbf{Branch} - offers two ways the dialogue can progress based on criteria
-    \item \textbf{Dialogue} - displays text
-    \item \textbf{Choice} - displays choices
-    \item \textbf{End} - graph's ending node
+    \item \textbf{Start} -- Graph's starting node
+    \item \textbf{Event} -- Executes events
+    \item \textbf{Branch} -- Offers two ways the dialogue can progress based on criteria
+    \item \textbf{Dialogue} -- Displays text
+    \item \textbf{Choice} -- Displays choices
+    \item \textbf{End} -- Graph's ending node
 \end{enumerate}
 \end{multicols}
 
@@ -213,7 +214,7 @@ TaleCraft uses graphs for representing graphs, as they are ideal when dealing wi
 
 
 \begin{posterbox}[column=1, name=result2, below=ds]{Demo}
-Two demo games have been developed to recreate scenes from iconic point-and-click adventure titles and to demonstrate the usability of the framework. The first demo is set in the opening location of \textit{Beneath a Steel Sky}. In this scene, the player can explore two rooms, examine various items, and engage in conversations with two characters. The second demo is based on \textit{The Secret of Monkey Island} and takes place on a street in the town of Melee Island. It showcases a scrolling screen and includes two groups of characters that the player can interact with and talk to in order to obtain items. 
+Two demo games have been developed to \textbf{recreate scenes} from iconic point-and-click adventure titles and to \textbf{demonstrate the usability} of the framework. The first demo is set in the opening location of \textit{Beneath a Steel Sky}. In this scene, the player can explore two rooms, examine various \textbf{items}, and engage in \textbf{conversations with two }characters. The second demo is based on \textit{The Secret of Monkey Island} and takes place on a street in the town of Melee Island. It showcases a scrolling screen and includes \textbf{two} groups of characters that the player can interact with and \textbf{talk to} in order to \textbf{obtain items}. 
 \begin{center}
 \includegraphics[width=0.506\linewidth]{img/manual.png}
 \includegraphics[width=0.486\linewidth]{img/manual-tsomi.png}
@@ -227,7 +228,7 @@ Two demo games have been developed to recreate scenes from iconic point-and-clic
 %\includegraphics[width=1\linewidth]{img/qr.png} 
 %\end{wrapfigure}
 
-The resulting framework delivers on its objectives and serves as a foundation for developing 2D point-and-click adventure games. In addition, two simple demo games that demonstrate the capabilities of our framework have been developed. Suggestions for future work include the implementation of features that should eventually be part of the framework, the most important being animation, sound, and saving system. 
+The resulting framework delivers on its objectives and serves as a \textbf{foundation} for developing 2D point-and-click adventure games. In addition, two simple \textbf{demo games} that demonstrate the capabilities of our framework have been developed. Suggestions for future work include the implementation of features that should eventually be part of the framework, the most important being animation, sound, and saving system. 
 
 \end{posterbox}
 
