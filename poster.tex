@@ -116,50 +116,54 @@ For inexperienced developers, designing these systems can be difficult. Furtherm
 \begin{posterbox}[column=0, span=1, name=goals, below=background, headerColorOne=cyan!40, boxColorOne=cyan!10]{Goals}
 For this thesis we aim to meet these two goals:
 \begin{itemize}
-\item \textbf{Framework}. Implement a framework in Unity with the following systems:
-\begin{itemize}
-    \item \textbf{Inventory} - Allows to store, examine, and later use items
-    \item \textbf{Commands} - Context-based or command-based interactions
-    \item \textbf{Movement} - Exploration of the environment by walking around
-    \item \textbf{Dialogue} - Conversations between characters
-\end{itemize}
+\setlength\itemsep{0.05em}
+\item \textbf{Framework}. Implement a framework in Unity.
 \item \textbf{Demo games.} Create two demo games to showcase the usability of our framework.
 \end{itemize}
 
 \end{posterbox}
 
-\begin{posterbox}[column=0, span=1, name=architecture, below=goals]{Architecture}
+\begin{posterbox}[column=0, span=1, name=architecture, below=goals]{Framework Design}
 
+\begin{comment}
 \begin{wrapfigure}{R}{0.4\textwidth}
 \centering
 \includegraphics[width=0.35\textwidth]{img/framework.png}
 \end{wrapfigure}
-The framework is divided into five systems, each containing distinct features of TaleCraft. The Command System forms the core of the framework, while the Inventory and Dialogue Systems are optional components that can be configured according to the user's needs.
+\end{comment}
+
+The first goal of our thesis was to design the framework. To do this, we analyzed other games,
+namely \textit{Beneath a Steel Sky}, \textit{The Secret of Monkey Island} and \textit{Fran Bow}. We then identified their common features, and divided them into the following systems:
+\begin{itemize}
+\setlength\itemsep{0.05em}
+    \item \textbf{Commands} - Logic behind player's interactions
+    \item \textbf{Movement} - Exploration of the environment by walking around
+    \item \textbf{Inventory} - Storing, examining, and later using items
+    \item \textbf{Dialogue} - Conversations between characters
+\end{itemize}
+
+\begin{comment}
 \begin{center}
 \end{center}
+\end{comment}
 \end{posterbox}
 
 \begin{posterbox}[column=0, span=1, name=cs, below=architecture]{Command System}
 
-\begin{wrapfigure}{R}{0.34\textwidth}
+\begin{wrapfigure}{R}{0.5\textwidth}
 \centering
-\includegraphics[width=0.3\textwidth]{img/image_2025-07-08_214350710.png}
+\includegraphics[width=0.48\textwidth]{img/image_2025-07-04_190803886.png}
 \end{wrapfigure}
 
-In our framework we define commands that represent ...
-In Figure it is defined as move command...
-
-
-Typical point-and-click games use either a command-based or a context-based system to let the player interact with the world. To enable the use of both of these methods, we implemented a system that lets the user of the framework add new commands. If needed, these commands can be displayed on the screen and made selectable by the player. The user can define the logic behind various actions by setting up conditions. When these conditions are met, the corresponding actions are executed.  The system also offers additional features, such as the ability to show a sentence describing the actions that the player is about to take.
-
+In our framework, commands represent the actions that the player wants to perform. These can be thought of as verbs, similar to those used in classic adventure games, such as \texttt{Talk to} or \texttt{Give}. We implemented a system that allows the user to define any number of commands. For example, the image on the right shows a variety of different commands that can be created. The game designer can define the logic behind each command by setting up conditions. When these conditions are met, the corresponding actions are triggered. Commands are not limited to background logic. If needed, they can also be displayed on the screen and made selectable by the player. The system additionally supports features like displaying a sentence that reflects the action the player is about to take.
 
 \end{posterbox}
 
 \begin{posterbox}[column=0, span=1, name=ws, below=cs]{Walking System}
-Normally, the player has the ability to move around the walking area. TaleCraft supports this functionality by representing walkable areas using polygons. At least one polygon is required to define the main walkable region, while additional optional polygons can be used to define obstacles that characters must navigate around. The image below shows a scene which uses polygons to determine where the characters will walk. Pathfinding is handled by an implementation of the A* algorithm. The system also supports character scaling based on their position, which creates the illusion of depth and makes the 2D environment appear more three-dimensional. 
+In typical point-and-click games, the player is able to move around the walkable area, and TaleCraft fully supports this functionality. Walkable regions are defined using polygons. At least one polygon is required to represent the area where characters can move, while additional optional polygons can be added to represent obstacles that characters must avoid. The image below illustrates such a setup: the blue polygon defines the main walkable area, while the grey and yellow ones represent obstacles. The pink line shows a calculated path from the character's starting position to a target point. Additionally, the system supports automatic character scaling in the editor based on their position, which helps create the illusion of depth. 
 
 \begin{center}
-\includegraphics[width=0.75\linewidth]{img/walkable_map3.png}
+\includegraphics[width=1\linewidth]{img/walkable_map4.png}
 \end{center}
 \end{posterbox}
 
@@ -179,8 +183,21 @@ To let the player collect and use items, the framework includes an inventory sys
 ]{Dialogue}
 TaleCraft uses graphs for representing graphs, as they are ideal when dealing with complex branching conversations. They also make it straightforward to implement cyclic paths, allowing characters to revisit or repeat parts of a conversation. For TaleCraft, we defined several types of nodes that are used to construct graphs of the dialogue system.
 
+\begin{multicols}{2}
+\begin{enumerate}
+\setlength
+\itemsep{0.0em}
+    \item \textbf{Start} - graph's starting node
+    \item \textbf{Event} - executes events
+    \item \textbf{Branch} - offers two ways the dialogue can progress based on criteria
+    \item \textbf{Dialogue} - displays text
+    \item \textbf{Choice} - displays choices
+    \item \textbf{End} - graph's ending node
+\end{enumerate}
+\end{multicols}
+
 \begin{center}
-\includegraphics[width=0.7\linewidth]{img/nodes.png}
+\includegraphics[width=0.7\linewidth]{img/nodes2.png}
 \end{center}
 
 %{\footnotesize
@@ -216,11 +233,10 @@ The resulting framework delivers on its objectives and serves as a foundation fo
 
 
 \begin{posterbox}[column=1, name=info, below=conclusion]{Info}
-
 \begin{comment}
-\begin{wrapfigure}{R}{0.35\textwidth}
+\begin{wrapfigure}{R}{0.\textwidth}
 \centering
-\includegraphics[width=0.16\textwidth]{img/qr.png}
+\includegraphics[width=0.15\textwidth]{img/image_2025-08-06_200800481.png}
 \end{wrapfigure}
 \end{comment}
 %\begin{tabular}{@{}p{0.65\linewidth} p{0.3\linewidth}@{}}
@@ -232,7 +248,7 @@ The resulting framework delivers on its objectives and serves as a foundation fo
     \textbf{Contact:} \\
     \href{mailto:kulichova.alzbeta@gmail.com}{kulichova.alzbeta@gmail.com} \\[1ex]
     \textbf{Project GitHub Page:} \\
-    \href{https://github.com/bethkux/TaleCraft}{https://github.com/bethkux/TaleCraft}\\
+    \href{https://github.com/bethkux/TaleCraft}{https://github.com/bethkux/TaleCraft}
     
 
 %&
@@ -243,7 +259,7 @@ The resulting framework delivers on its objectives and serves as a foundation fo
 %\begin{comment}
 \begin{flushright}
 \raisebox{10pt}[0pt][0pt]{%
-\includegraphics[width=0.22\linewidth]{img/qr.png}%
+\includegraphics[width=0.18\linewidth]{img/image_2025-08-06_200800481.png}%
 }
 \end{flushright}
 %\end{comment}
