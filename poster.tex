@@ -99,10 +99,9 @@
 	headerFontColor=black,
 	}%
 	{\includegraphics[height=8em]{logos/mff-black.pdf}}
-	{TaleCraft — Framework for 2D\\ Point-and-Click Adventure Games}
+	{\Huge TaleCraft — Framework for 2D\\ Point-and-Click Adventure Games}
 	{\vspace{1ex} Alžbeta Kulichová | Supervisor: Mgr. Pavel Ježek, Ph.D.}
 	{\includegraphics[height=8em]{logos/uk-red.pdf}}
-
 
 %
 % LEFT COLUMN
@@ -151,9 +150,9 @@ namely \textit{Beneath a Steel Sky}, \textit{The Secret of Monkey Island} and \t
 
 \begin{posterbox}[column=0, span=1, name=cs, below=architecture]{Command System}
 
-\begin{wrapfigure}{R}{0.5\textwidth}
+\begin{wrapfigure}{R}{0.6\textwidth}
 \centering
-\includegraphics[width=0.48\textwidth]{img/image_2025-07-04_190803886.png}
+\includegraphics[width=0.58\textwidth]{img/cs2.png}
 \end{wrapfigure}
 
 In our framework, commands represent the \textbf{actions} that the player wants to perform. These can be thought of as verbs, similar to those used in classic adventure games, such as \texttt{Talk to} or \texttt{Give}. We implemented a system that allows the game developer to define any number of commands. For example, the image on the right shows a variety of different commands that can be created. The developer can define the logic behind each command by setting up \textbf{conditions}. When these conditions are met, the corresponding actions are triggered. Commands are not limited to background logic. If needed, they can also be \textbf{displayed on the screen} and \textbf{made selectable} by the player. The system additionally supports features like \textbf{displaying a sentence} that reflects the action the player is about to take.
@@ -164,7 +163,7 @@ In our framework, commands represent the \textbf{actions} that the player wants 
 In typical point-and-click games, the player is able to \textbf{move around} the walkable area, and \textit{TaleCraft} fully supports this functionality. Walkable regions are defined using \textbf{polygons}. At least one polygon is required to represent the area where characters can move, while additional optional polygons can be added to represent \textbf{obstacles} that characters must avoid. The image below illustrates such a setup: the \textcolor{cyan}{\textbf{blue}} polygon defines the main walkable area, while the \textcolor{gray}{\textbf{grey}} and \textcolor{Dandelion}{\textbf{yellow}} ones represent obstacles. The \textcolor{green}{\textbf{green}} line shows a calculated path from the character's starting position to a target point. Additionally, the system supports automatic character \textbf{scaling} in the editor based on their position, which helps create the illusion of depth. 
 
 \begin{center}
-\includegraphics[width=1\linewidth]{img/walkable_map5.png}
+\includegraphics[width=0.8\linewidth]{img/walkable_map5.png}
 \end{center}
 \end{posterbox}
 
